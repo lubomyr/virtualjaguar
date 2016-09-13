@@ -1,0 +1,14 @@
+virtualjaguar/makefile-qt
+virtualjaguar/obj/
+virtualjaguar/src/m68000/obj/
+virtualjaguar/src/version.h
+virtualjaguar/virtualjaguar
+virtualjaguar/virtualjaguar.log
+virtualjaguar/src/*~
+virtualjaguar/src/m68000/*~
+virtualjaguar/eeproms/*.eep
+virtualjaguar/software/
+virtualjaguar/build/
+virtualjaguar/regression-test/
+virtualjaguar/*~
+libapplication*
