@@ -57,11 +57,11 @@ int main(int argc, char * argv[])
 	// NOTE: Command line switches can override any config file settings, thus the
 	//       proliferation of the noXXX switches. ;-)
 
+    /* //Commented, becouse caused crash on some android device
 	for(int i=1; i<argc || argv[i]!=NULL; i++)
 	{
-		// This would be the most likely place to do the cart loading...
 		if (argv[i][0] != '-')
-			haveCart = true;						// It looks like we have a cartridge!
+			haveCart = true;
 
 		if (!strcmp(argv[i], "-joystick"))
 			vjs.useJoystick = true;
@@ -142,7 +142,7 @@ int main(int argc, char * argv[])
 			printf("with the VJ GUI.\n");
  			return 1;
 		}
-    }
+    }//*/
 
 	// Set up SDL library
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO | SDL_INIT_TIMER) < 0)
