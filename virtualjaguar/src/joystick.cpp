@@ -64,6 +64,7 @@ bool startMemLog = false;
 bool blitterSingleStep = false;
 bool bssGo = false;
 bool bssHeld = false;
+extern bool running;
 
 void JoystickInit(void)
 {
@@ -135,8 +136,11 @@ void JoystickExec(void)
 		joypad_0_buttons[BUTTON_d] = 0x01;
 
 	extern bool debounceRunKey;
+	extern void guichan_gui();
+
     if (keystate[SDLK_ESCAPE])
     {
+		//guichan_gui();
 		if (!debounceRunKey)
 	    	finished = true;
     }

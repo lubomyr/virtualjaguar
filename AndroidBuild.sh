@@ -10,9 +10,11 @@ ln -sf libglshim.a $LOCAL_PATH/../../../obj/local/$1/libGL.a
 JOBS=1
 
 cd virtualjaguar/src/m68000
+env CFLAGS="-Ofast" \
 ../../../../setEnvironment-$1.sh sh -c "make -j$JOBS"
 cd ../..
 #cd virtualjaguar
+env CFLAGS="-Ofast" \
 ../../setEnvironment-$1.sh sh -c "make -j$JOBS" && mv -f virtualjaguar ../libapplication-$1.so
 
 

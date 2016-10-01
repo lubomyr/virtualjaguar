@@ -54,7 +54,6 @@ void LoadVJSettings(void)
 	vjs.glFilter = sdlemu_getval_int("glFilterType", 0);
 	vjs.renderType = sdlemu_getval_int("renderType", 0);
 	vjs.audioEnabled = sdlemu_getval_bool("audioEnabled", true);
-	vjs.hardwareTypeAlpine = sdlemu_getval_bool("hardwareTypeAlpine", false);
 	vjs.useFastBlitter = sdlemu_getval_bool("useFastBlitter", false);
 
 	// Keybindings in order of U, D, L, R, C, B, A, Op, Pa, 0-9, #, *

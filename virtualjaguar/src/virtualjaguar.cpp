@@ -17,6 +17,8 @@
 #include "settings.h"								// Pull in "vjs" struct
 #include "video.h"
 
+extern void guichan_gui();
+
 // Uncomment this to use built-in BIOS/CD-ROM BIOS
 // You'll need a copy of jagboot.h & jagcd.h for this to work...!
 //#define USE_BUILT_IN_BIOS
@@ -33,6 +35,7 @@
 //Maybe we should move the video stuff to TOM? Makes more sense to put it there...
 //Actually, it would probably be better served in VIDEO.CPP... !!! FIX !!! [DONE]
 //uint32_t totalFrames;//temp, so we can grab this from elsewhere...
+//int main_old(int argc, char * argv[])
 int main(int argc, char * argv[])
 {
 //NOTE: This isn't actually used anywhere... !!! FIX !!!
@@ -52,7 +55,8 @@ int main(int argc, char * argv[])
 
 	LogInit("vj.log");
 	LoadVJSettings();								// Get config file settings...
-
+	
+	
 	// Check the switches... ;-)
 	// NOTE: Command line switches can override any config file settings, thus the
 	//       proliferation of the noXXX switches. ;-)
@@ -163,35 +167,22 @@ int main(int argc, char * argv[])
 	WriteLog("Initializing jaguar subsystem...\n");
 	JaguarInit();
 
-	// Get the BIOS ROM
-#ifdef USE_BUILT_IN_BIOS
-	WriteLog("VJ: Using built in BIOS/CD BIOS...\n");
-	memcpy(jaguarBootROM, jagBootROM, 0x20000);
-	memcpy(jaguarCDBootROM, jagCDROM, 0x40000);
-	BIOSLoaded = CDBIOSLoaded = true;
-#else
-// What would be nice here would be a way to check if the BIOS was loaded so that we
-// could disable the pushbutton on the Misc Options menu... !!! FIX !!! [DONE here, but needs to be fixed in GUI as well!]
-//WriteLog("About to attempt to load BIOSes...\n");
-//	BIOSLoaded = (JaguarLoadROM(jaguarBootROM, vjs.jagBootPath) == 0x20000 ? true : false);
-//	WriteLog("VJ: BIOS is %savailable...\n", (BIOSLoaded ? "" : "not "));
-//	CDBIOSLoaded = (JaguarLoadROM(jaguarCDBootROM, vjs.CDBootPath) == 0x40000 ? true : false);
-//	WriteLog("VJ: CD BIOS is %savailable...\n", (CDBIOSLoaded ? "" : "not "));
-#endif
-
 	SET32(jaguarMainRAM, 0, 0x00200000);			// Set top of stack...
 
 WriteLog("Initializing video subsystem...\n");
 	VideoInit();
 WriteLog("Initializing GUI subsystem...\n");
 #warning "!!! FIX !!! (GUIInit())"
+	
 	GUIInit();
 
 	// Now with crunchy GUI goodness!
 WriteLog("About to start GUI...\n");
 #warning "!!! FIX !!! (GUIMain(...))"
-	GUIMain(haveCart ? argv[1] : NULL);
+	//GUIMain(haveCart ? argv[1] : NULL);
 
+	guichan_gui();
+	
 //This is no longer accurate...!
 //	int elapsedTime = clock() - startTime;
 //	int fps = (1000 * totalFrames) / elapsedTime;

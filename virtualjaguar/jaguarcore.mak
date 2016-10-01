@@ -49,6 +49,12 @@ GCC_DEPS = -MMD
 INCS := -I./src -I./src/gui
 
 OBJS := \
+	obj/guichan-gui.o     \
+	obj/menuLoad.o        \
+	obj/menuMessage.o     \
+	obj/menuSaveState.o   \
+	obj/sdltruetypefont.o \
+\
 	obj/gui.o          \
 \
 	obj/blitter.o      \
@@ -112,6 +118,10 @@ obj/%.o: src/%.cpp
 	$(Q)$(CC) $(GCC_DEPS) $(CXXFLAGS) $(SDL_CFLAGS) $(DEFINES) $(INCS) -c $< -o $@
 
 obj/%.o: src/gui/%.cpp
+	@echo -e "\033[01;33m***\033[00;32m Compiling $<...\033[00m"
+	$(Q)$(CC) $(GCC_DEPS) $(CXXFLAGS) $(SDL_CFLAGS) $(DEFINES) $(INCS) -c $< -o $@
+	
+obj/%.o: src/guichan/%.cpp
 	@echo -e "\033[01;33m***\033[00;32m Compiling $<...\033[00m"
 	$(Q)$(CC) $(GCC_DEPS) $(CXXFLAGS) $(SDL_CFLAGS) $(DEFINES) $(INCS) -c $< -o $@
 
