@@ -105,7 +105,7 @@ obj:
 
 $(TARGET)$(EXESUFFIX): $(OBJS)
 	@echo "*** Linking it all together..."
-	@$(LD) $(LDFLAGS) -o $@ $(OBJS) $(ANDROID_LDFLAGS) obj/libm68k.a
+	@$(LD) $(LDFLAGS) -o $@ $(OBJS) obj/libm68k.a $(ANDROID_LDFLAGS)
 
 # Main source compilation (implicit rules)...
 
