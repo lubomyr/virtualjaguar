@@ -288,7 +288,7 @@ void init()
     // Place everything on main form
     //--------------------------------------------------
     top->add(background, 0, 0);
-    top->add(button_reset, 210, 330);
+    top->add(button_reset, 320, 330);
 //    top->add(button_resume, 320, 330);
     top->add(button_quit, 430, 330);
 //    top->add(button_savestate, 20, 330);
