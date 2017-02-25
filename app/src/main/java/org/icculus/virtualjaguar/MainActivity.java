@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,7 +56,11 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
         switch (id) {
             case R.id.start:
-                start();
+                if (!Config.romImage.isEmpty())
+                    start();
+                else
+                    Toast.makeText(MainActivity.this, getString(R.string.please_select_rom_image),
+                            Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -95,10 +100,12 @@ public class MainActivity extends Activity {
             try {
                 Config.readConfig(configPath);
             } catch (FileNotFoundException e) {
-                Toast.makeText(MainActivity.this, getString(R.string.config_not_found), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.config_not_found),
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
-            Toast.makeText(MainActivity.this, getString(R.string.config_loaded), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.config_loaded),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -115,7 +122,8 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE:
                 if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -169,8 +177,10 @@ public class MainActivity extends Activity {
     private void updateUI() {
         final TextView selectedRomTv = (TextView) findViewById(R.id.selectedRomTextView);
         Button selectRomBtn = (Button) findViewById(R.id.selectRomBtn);
-        if (!configPath.isEmpty())
+        if (!Config.romImage.isEmpty())
             selectedRomTv.setText(Config.romImage);
+        else
+            selectedRomTv.setText(getString(R.string.none));
         selectRomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

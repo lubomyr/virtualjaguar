@@ -8,4 +8,5 @@
     <string name="select">select</string>
     <string name="none">none</string>
     <string name="rom_selection">ROM selection:</string>
+    <string name="please_select_rom_image">Please select ROM image</string>
 </resources>
