@@ -53,6 +53,7 @@ struct VJSettings
 	char EEPROMPath[MAX_PATH];
 	char alpineROMPath[MAX_PATH];
 	char absROMPath[MAX_PATH];
+	char autostartROM[MAX_PATH];
 };
 
 // Render types

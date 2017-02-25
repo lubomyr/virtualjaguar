@@ -190,7 +190,8 @@ WriteLog("Initializing GUI subsystem...\n");
 	// Now with crunchy GUI goodness!
 WriteLog("About to start GUI...\n");
 #warning "!!! FIX !!! (GUIMain(...))"
-	GUIMain(haveCart ? argv[1] : NULL);
+	//GUIMain(haveCart ? argv[1] : NULL);
+	GUIMain(vjs.autostartROM);
 
 //This is no longer accurate...!
 //	int elapsedTime = clock() - startTime;

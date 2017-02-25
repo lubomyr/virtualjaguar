@@ -106,6 +106,8 @@ void LoadVJSettings(void)
 	strcpy(vjs.CDBootPath, sdlemu_getval_string("CDBootROM", "./BIOS/jagcd.rom"));
 	strcpy(vjs.EEPROMPath, sdlemu_getval_string("EEPROMs", "./EEPROMs"));
 	strcpy(vjs.ROMPath, sdlemu_getval_string("ROMs", "./ROMs"));
+	strcpy(vjs.autostartROM, sdlemu_getval_string("autostartROM", ""));
+	
 	CheckForTrailingSlash(vjs.EEPROMPath);
 	CheckForTrailingSlash(vjs.ROMPath);
 
