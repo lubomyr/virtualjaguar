@@ -10,8 +10,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.icculus.virtualjaguar.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/my_border">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rom_selection" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_border">
+
+            <Button
+                android:id="@+id/selectRomBtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/select" />
+
+            <TextView
+                android:id="@+id/selectedRomTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/selectRomBtn"
+                android:gravity="center"
+                android:text="@string/none"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

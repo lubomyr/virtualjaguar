@@ -1,7 +1,6 @@
 package org.icculus.virtualjaguar;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +11,9 @@ import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,6 +24,7 @@ public class MainActivity extends Activity {
     private String appPath;
     private String configPath;
     private SharedPreferences sPref;
+    final String SAVED_PATH = "saved_path";
     private final int REQUEST_EXTERNAL_STORAGE = 1;
 
     @Override
@@ -37,6 +40,7 @@ public class MainActivity extends Activity {
             Config.setDefaulValues();
 
         verifyStoragePermissions();
+        updateUI();
     }
 
     @Override
@@ -143,6 +147,48 @@ public class MainActivity extends Activity {
         }
         createDirIfNotExists();
         checkConfig();
+    }
+
+    private void saveLastPath(String filePath) {
+        String dirPath;
+        if (filePath.contains("/"))
+            dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
+        else
+            dirPath = filePath;
+        sPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putString(SAVED_PATH, dirPath);
+        ed.apply();
+    }
+
+    private String getLastPath() {
+        sPref = getPreferences(MODE_PRIVATE);
+        return sPref.getString(SAVED_PATH, null);
+    }
+
+    private void updateUI() {
+        final TextView selectedRomTv = (TextView) findViewById(R.id.selectedRomTextView);
+        Button selectRomBtn = (Button) findViewById(R.id.selectRomBtn);
+        if (!configPath.isEmpty())
+            selectedRomTv.setText(Config.romImage);
+        selectRomBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set up extension
+                String extension[] = {".jag", ".j64"};
+                FileChooser filechooser = new FileChooser(MainActivity.this, getLastPath(), extension);
+                filechooser.setFileListener(new FileChooser.FileSelectedListener() {
+                    @Override
+                    public void fileSelected(File file) {
+                        String filename = file.getAbsolutePath();
+                        saveLastPath(file.getPath());
+                        Config.romImage = filename;
+                        selectedRomTv.setText(Config.romImage);
+                    }
+                });
+                filechooser.showDialog();
+            }
+        });
     }
 
 }
