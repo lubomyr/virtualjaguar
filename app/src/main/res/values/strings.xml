@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">VirtualJaguar</string>
+    <string name="config_not_saved">Error, config not saved</string>
+    <string name="config_saved">config saved</string>
+    <string name="config_not_found">config not found</string>
+    <string name="config_loaded">config loaded</string>
+    <string name="download_disk_images">Download disk images</string>
+    <string name="select">select</string>
+    <string name="none">none</string>
 </resources>
