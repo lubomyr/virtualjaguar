@@ -180,7 +180,8 @@ public class MainActivity extends Activity {
     private void updateUI() {
         romSelection();
         glFilterTypeselection();
-        enableDspSelection();
+        dspSelection();
+        fastBlitterSelection();
     }
 
     private void romSelection() {
@@ -229,13 +230,34 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void enableDspSelection() {
+    private void dspSelection() {
         CheckBox enableDspCb = (CheckBox) findViewById(R.id.enableDspCheckbox);
+        final CheckBox usePipelinedDSPCb = (CheckBox) findViewById(R.id.usePipelinedDSPCheckbox);
         enableDspCb.setChecked(Config.enableDsp == 1);
+        usePipelinedDSPCb.setChecked(Config.usePipelinedDSP == 1);
+        usePipelinedDSPCb.setEnabled(Config.enableDsp == 1);
         enableDspCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Config.enableDsp = b ? 1 : 0;
+                usePipelinedDSPCb.setEnabled(Config.enableDsp == 1);
+            }
+        });
+        usePipelinedDSPCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Config.usePipelinedDSP = b ? 1 : 0;
+            }
+        });
+    }
+
+    private void fastBlitterSelection() {
+        CheckBox useFastBlitterCb = (CheckBox) findViewById(R.id.useFastBlitterCheckbox);
+        useFastBlitterCb.setChecked(Config.useFastBlitter == 1);
+        useFastBlitterCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Config.useFastBlitter = b ? 1 : 0;
             }
         });
     }

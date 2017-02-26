@@ -13,5 +13,7 @@
     <string name="sharp">sharp</string>
     <string name="blurry">blurry</string>
     <string name="enableDsp">enable DSP</string>
+    <string name="usePipelinedDSP">use PipelinedDSP</string>
+    <string name="useFastBlitter">use FastBlitter</string>
 
 </resources>

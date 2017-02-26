@@ -12,6 +12,8 @@ class Config {
     static String romImage = "";
     static int glFilterType = 0;
     static int enableDsp = 1;
+    static int usePipelinedDSP = 0;
+    static int useFastBlitter = 0;
 
     static void setDefaulValues() {
 
@@ -29,6 +31,12 @@ class Config {
             }
             if (str.startsWith("DSPEnabled") && str.contains("=")) {
                 enableDsp = getAsInt(str);
+            }
+            if (str.startsWith("usePipelinedDSP") && str.contains("=")) {
+                usePipelinedDSP = getAsInt(str);
+            }
+            if (str.startsWith("useFastBlitter") && str.contains("=")) {
+                useFastBlitter = getAsInt(str);
             }
         }
         sc.close();
@@ -89,11 +97,11 @@ class Config {
         fw.write("\n");
         fw.write("#If DSP enabled, set whether or not to use the pipelined core: 1 - use, 0 - don 't use\n");
         fw.write("\n");
-        fw.write("usePipelinedDSP = 0\n");
+        fw.write("usePipelinedDSP = " + usePipelinedDSP + "\n");
         fw.write("\n");
         fw.write("#FastBlitter options: 1 - use, 0 - don 't use\n");
         fw.write("\n");
-        fw.write("useFastBlitter = 0\n");
+        fw.write("useFastBlitter = " + useFastBlitter + "\n");
         fw.write("\n");
         fw.write("#Joystick options: 1 - use joystick, 0 - don 't use\n");
         fw.write("\n");
