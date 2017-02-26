@@ -13,6 +13,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@drawable/my_border">
@@ -48,6 +53,47 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </RelativeLayout>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="1.0"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/glFilterTypeLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.26"
+                android:background="@drawable/my_border"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glFilterType" />
+
+                <RadioButton
+                    android:id="@+id/glFilterTypeSharp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/sharp" />
+
+                <RadioButton
+                    android:id="@+id/glFilterTypeBlurry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/blurry" />
+
+            </RadioGroup>
+
+        </LinearLayout>
 
     </LinearLayout>
 

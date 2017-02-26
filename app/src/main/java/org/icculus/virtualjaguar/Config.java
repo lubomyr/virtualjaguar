@@ -10,6 +10,7 @@ class Config {
     static final String NONE = "none";
     static boolean configLoaded = false;
     static String romImage = "";
+    static int glFilterType = 0;
 
 
     static void setDefaulValues() {
@@ -23,8 +24,21 @@ class Config {
             String str = sc.next() + "\n";
             if (str.startsWith("autostartROM") && str.contains("="))
                 romImage = str.substring(str.indexOf("=") + 1, str.length()).trim();
+            if (str.startsWith("glFilterType") && str.contains("=")) {
+                glFilterType = getAsInt(str);
+            }
         }
         sc.close();
+    }
+
+    static private int getAsInt(String str) {
+        int result = 0;
+        String tStr = str.substring(str.indexOf("=") + 1, str.length()).trim();
+        try {
+            result = Integer.parseInt(tStr);
+        } catch (Exception ignore) {
+        }
+        return result;
     }
 
     static void writeConfig(String path) throws IOException {
@@ -52,7 +66,7 @@ class Config {
         fw.write("\n");
         fw.write("#OpenGL filtering type: 1 - blurry, 0 - sharp\n");
         fw.write("\n");
-        fw.write("glFilterType = 0\n");
+        fw.write("glFilterType = " + glFilterType + "\n");
         fw.write("\n");
         fw.write("#Display options: 1 - fullscreen, 0 - windowed\n");
         fw.write("\n");

@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -175,6 +176,11 @@ public class MainActivity extends Activity {
     }
 
     private void updateUI() {
+        romSelection();
+        glFilterTypeselection();
+    }
+
+    private void romSelection() {
         final TextView selectedRomTv = (TextView) findViewById(R.id.selectedRomTextView);
         Button selectRomBtn = (Button) findViewById(R.id.selectRomBtn);
         if (!Config.romImage.isEmpty())
@@ -185,7 +191,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 // Set up extension
-                String extension[] = {".jag", ".j64"};
+                String extension[] = {".jag", ".j64", ".abs", ".rom", ".bin"};
                 FileChooser filechooser = new FileChooser(MainActivity.this, getLastPath(), extension);
                 filechooser.setFileListener(new FileChooser.FileSelectedListener() {
                     @Override
@@ -197,6 +203,25 @@ public class MainActivity extends Activity {
                     }
                 });
                 filechooser.showDialog();
+            }
+        });
+    }
+
+    private void glFilterTypeselection() {
+        RadioButton sharpRb = (RadioButton) findViewById(R.id.glFilterTypeSharp);
+        RadioButton blurryRb = (RadioButton) findViewById(R.id.glFilterTypeBlurry);
+        sharpRb.setChecked(Config.glFilterType == 0);
+        blurryRb.setChecked(Config.glFilterType == 1);
+        sharpRb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Config.glFilterType = 0;
+            }
+        });
+        blurryRb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Config.glFilterType = 1;
             }
         });
     }

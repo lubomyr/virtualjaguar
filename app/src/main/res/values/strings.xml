@@ -9,4 +9,7 @@
     <string name="none">none</string>
     <string name="rom_selection">ROM selection:</string>
     <string name="please_select_rom_image">Please select ROM image</string>
+    <string name="glFilterType">glFilterType:</string>
+    <string name="sharp">sharp</string>
+    <string name="blurry">blurry</string>
 </resources>
