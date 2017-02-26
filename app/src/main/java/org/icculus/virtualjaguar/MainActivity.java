@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -178,6 +180,7 @@ public class MainActivity extends Activity {
     private void updateUI() {
         romSelection();
         glFilterTypeselection();
+        enableDspSelection();
     }
 
     private void romSelection() {
@@ -222,6 +225,17 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Config.glFilterType = 1;
+            }
+        });
+    }
+
+    private void enableDspSelection() {
+        CheckBox enableDspCb = (CheckBox) findViewById(R.id.enableDspCheckbox);
+        enableDspCb.setChecked(Config.enableDsp == 1);
+        enableDspCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Config.enableDsp = b ? 1 : 0;
             }
         });
     }

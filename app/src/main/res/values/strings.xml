@@ -12,4 +12,6 @@
     <string name="glFilterType">glFilterType:</string>
     <string name="sharp">sharp</string>
     <string name="blurry">blurry</string>
+    <string name="enableDsp">enable DSP</string>
+
 </resources>

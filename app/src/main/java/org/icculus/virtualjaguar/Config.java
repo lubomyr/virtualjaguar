@@ -11,7 +11,7 @@ class Config {
     static boolean configLoaded = false;
     static String romImage = "";
     static int glFilterType = 0;
-
+    static int enableDsp = 1;
 
     static void setDefaulValues() {
 
@@ -26,6 +26,9 @@ class Config {
                 romImage = str.substring(str.indexOf("=") + 1, str.length()).trim();
             if (str.startsWith("glFilterType") && str.contains("=")) {
                 glFilterType = getAsInt(str);
+            }
+            if (str.startsWith("DSPEnabled") && str.contains("=")) {
+                enableDsp = getAsInt(str);
             }
         }
         sc.close();
@@ -82,7 +85,7 @@ class Config {
         fw.write("\n");
         fw.write("#DSP options: 1 - use, 0 - don 't use\n");
         fw.write("\n");
-        fw.write("DSPEnabled = 1\n");
+        fw.write("DSPEnabled = " + enableDsp + "\n");
         fw.write("\n");
         fw.write("#If DSP enabled, set whether or not to use the pipelined core: 1 - use, 0 - don 't use\n");
         fw.write("\n");

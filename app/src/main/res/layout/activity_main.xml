@@ -15,59 +15,59 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:background="@drawable/my_border">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rom_selection" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/my_border">
-
-            <Button
-                android:id="@+id/selectRomBtn"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="@string/select" />
+            android:background="@drawable/my_border"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/selectedRomTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rom_selection" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@id/selectRomBtn"
-                android:gravity="center"
-                android:text="@string/none"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:background="@drawable/my_border">
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/selectRomBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/select" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/selectedRomTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/selectRomBtn"
+                    android:gravity="center"
+                    android:text="@string/none"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:weightSum="1.0"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1.0">
 
             <RadioGroup
                 android:id="@+id/glFilterTypeLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.26"
+                android:layout_weight="0.33"
                 android:background="@drawable/my_border"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="vertical">
@@ -92,6 +92,22 @@
                     android:text="@string/blurry" />
 
             </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_weight="0.45"
+                android:background="@drawable/my_border">
+
+                <CheckBox
+                    android:id="@+id/enableDspCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enableDsp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
