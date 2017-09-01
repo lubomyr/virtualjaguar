@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:text="@string/select" />
 
@@ -47,6 +49,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_toStartOf="@id/selectRomBtn"
                     android:layout_toLeftOf="@id/selectRomBtn"
                     android:gravity="center"
                     android:text="@string/none"
@@ -81,6 +84,7 @@
                     android:id="@+id/glFilterTypeSharp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:text="@string/sharp" />
 
@@ -88,6 +92,7 @@
                     android:id="@+id/glFilterTypeBlurry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:text="@string/blurry" />
 
@@ -96,6 +101,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical"
                 android:layout_weight="0.55"
@@ -124,5 +130,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
 
 </RelativeLayout>

@@ -20,6 +20,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,6 +32,7 @@ public class MainActivity extends Activity {
     private String appPath;
     private String configPath;
     private SharedPreferences sPref;
+    private AdView mAdView;
     final String SAVED_PATH = "saved_path";
     private final int REQUEST_EXTERNAL_STORAGE = 1;
 
@@ -45,6 +50,7 @@ public class MainActivity extends Activity {
 
         verifyStoragePermissions();
         updateUI();
+        setAds();
     }
 
     @Override
@@ -67,6 +73,15 @@ public class MainActivity extends Activity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setAds() {
+        MobileAds.initialize(getApplicationContext(),
+                getString(R.string.app_id));
+
+        mAdView = (AdView) findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void start() {

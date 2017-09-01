@@ -15,5 +15,7 @@
     <string name="enableDsp">enable DSP</string>
     <string name="usePipelinedDSP">use PipelinedDSP</string>
     <string name="useFastBlitter">use FastBlitter</string>
-
+    <string name="app_id">ca-app-pub-4572241703388342~6632888747</string>
+    <string name="banner_ad_unit_id">ca-app-pub-4572241703388342/4792305411</string>
+    <string name="page_ad_unit_id">ca-app-pub-4572241703388342/8608508913</string>
 </resources>
