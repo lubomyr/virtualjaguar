@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import java.io.File;
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
     private String configPath;
     private SharedPreferences sPref;
     private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
     final String SAVED_PATH = "saved_path";
     private final int REQUEST_EXTERNAL_STORAGE = 1;
 
@@ -82,15 +85,31 @@ public class MainActivity extends Activity {
         mAdView = (AdView) findViewById(R.id.ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.page_ad_unit_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+    }
+
+    private void showPageAds() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        showPageAds();
+
+        super.onBackPressed();
     }
 
     private void start() {
         saveConfig();
 
-        // run bochs app
-        //ComponentName cn = new ComponentName("net.sourceforge.bochs", "net.sourceforge.bochs.MainActivity");
         Intent intent = new Intent(this, SDLActivity.class);
-        //intent.setComponent(cn);
         startActivity(intent);
     }
 

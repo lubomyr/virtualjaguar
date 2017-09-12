@@ -7,7 +7,7 @@ android {
         applicationId "org.icculus.virtualjaguar"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 3
+        versionCode 5
         versionName "1.01"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
